@@ -1,0 +1,279 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Trening na Moc</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Syne:wght@700;800&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #f5f4f1;
+    --surface: #ffffff;
+    --surface2: #f0efe9;
+    --border: #e0ded6;
+    --border2: #d0cec4;
+    --text: #1a1916;
+    --text2: #6b6960;
+    --text3: #a8a59e;
+    --accent: #2c5f4a;
+    --input-bg: #f7f6f2;
+    --input-focus: #eaf2ee;
+    --shadow: 0 1px 3px rgba(0,0,0,0.06), 0 4px 16px rgba(0,0,0,0.04);
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: 'Inter', sans-serif;
+    padding: 48px 24px 100px;
+    min-height: 100vh;
+    max-width: 1100px;
+    margin: 0 auto;
+  }
+  header {
+    margin-bottom: 52px;
+    padding-bottom: 28px;
+    border-bottom: 1px solid var(--border);
+    display: flex;
+    align-items: flex-end;
+    justify-content: space-between;
+    gap: 20px;
+    flex-wrap: wrap;
+  }
+  h1 {
+    font-family: 'Syne', sans-serif;
+    font-size: clamp(32px, 5vw, 52px);
+    font-weight: 800;
+    color: var(--text);
+    letter-spacing: -1px;
+    line-height: 1;
+  }
+  h1 em { font-style: normal; color: var(--accent); }
+  .header-meta {
+    font-size: 12px;
+    letter-spacing: 2px;
+    color: var(--text3);
+    text-transform: uppercase;
+    font-weight: 500;
+    padding-bottom: 4px;
+  }
+  .section-group { margin-bottom: 48px; }
+  .cycle-header {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    margin-bottom: 14px;
+  }
+  .cycle-num {
+    font-family: 'Syne', sans-serif;
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: var(--text3);
+    white-space: nowrap;
+  }
+  .cycle-line { flex: 1; height: 1px; background: var(--border); }
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: var(--shadow);
+  }
+  thead tr {
+    background: var(--surface2);
+    border-bottom: 1px solid var(--border2);
+  }
+  thead th {
+    padding: 13px 20px;
+    text-align: left;
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    color: var(--text3);
+  }
+  thead th:first-child { color: var(--text2); min-width: 200px; width: 36%; }
+  thead th:not(:first-child) { text-align: center; min-width: 100px; }
+  .row-section td {
+    padding: 9px 20px;
+    font-size: 10px;
+    font-weight: 600;
+    letter-spacing: 2.5px;
+    text-transform: uppercase;
+    color: var(--text3);
+    background: var(--surface2);
+    border-top: 1px solid var(--border);
+    border-bottom: 1px solid var(--border);
+  }
+  .row-sub td {
+    padding: 5px 20px 5px 28px;
+    font-size: 10px;
+    font-weight: 600;
+    letter-spacing: 1.5px;
+    color: var(--text3);
+  }
+  .row-exercise td {
+    padding: 11px 20px;
+    border-bottom: 1px solid var(--border);
+    font-size: 13.5px;
+    font-weight: 400;
+    color: var(--text);
+  }
+  .row-exercise:last-child td { border-bottom: none; }
+  .row-exercise:hover { background: #fafaf7; }
+  .cell-input { text-align: center; padding: 7px 10px !important; }
+  .cell-input input {
+    width: 100%;
+    background: var(--input-bg);
+    border: 1px solid var(--border);
+    border-radius: 6px;
+    color: var(--text);
+    font-family: 'Inter', sans-serif;
+    font-size: 13px;
+    font-weight: 500;
+    text-align: center;
+    padding: 7px 6px;
+    outline: none;
+    transition: all 0.15s ease;
+    min-width: 74px;
+  }
+  .cell-input input::placeholder { color: var(--text3); font-weight: 400; }
+  .cell-input input:focus {
+    border-color: var(--accent);
+    background: var(--input-focus);
+    box-shadow: 0 0 0 3px rgba(44,95,74,0.1);
+  }
+  .cell-input input:not(:placeholder-shown) {
+    color: var(--accent);
+    border-color: rgba(44,95,74,0.35);
+    background: var(--input-focus);
+    font-weight: 600;
+  }
+  .divider { height: 1px; background: var(--border); margin: 0 0 48px; opacity: 0.5; }
+  @media (max-width: 640px) {
+    body { padding: 28px 12px 80px; }
+    thead th { padding: 10px 8px; font-size: 9px; }
+    .row-exercise td { padding: 9px 8px; font-size: 12px; }
+    .cell-input input { min-width: 52px; font-size: 12px; padding: 6px 4px; }
+    thead th:first-child { min-width: 100px; }
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <h1>Trening<br>na <em>Moc</em></h1>
+  <span class="header-meta">Periodyzacja blokowa · 8 cykli · 24 bloki</span>
+</header>
+
+<div id="tables"></div>
+
+<script>
+  const exercises = [
+    { section: "1. Ćwiczenia siłowe", sub: "A", name: "Wyciskanie sztangi z ziemi" },
+    { section: null, sub: null, name: "Wiosłowanie" },
+    { section: null, sub: "B", name: "Martwy Ciąg" },
+    { section: null, sub: null, name: "Podciąganie z obciążeniem" },
+    { section: null, sub: "C", name: "Przysiad" },
+    { section: null, sub: null, name: "OHP" },
+    { section: "2. Wyciskanie olimpijskie", sub: "A", name: "Podrzut sztangi na klatkę" },
+    { section: null, sub: "B", name: "Podrzut sztangi nad głowę" },
+    { section: null, sub: "C", name: "Podrzut sztangi (szrugsy)" },
+  ];
+
+  const cycles = [
+    { label: "Cykl I", blocks: [1, 2, 3] },
+    { label: "Cykl II", blocks: [4, 5, 6] },
+    { label: "Cykl III", blocks: [7, 8, 9] },
+    { label: "Cykl IV", blocks: [10, 11, 12] },
+    { label: "Cykl V", blocks: [13, 14, 15] },
+    { label: "Cykl VI", blocks: [16, 17, 18] },
+    { label: "Cykl VII", blocks: [19, 20, 21] },
+    { label: "Cykl VIII", blocks: [22, 23, 24] },
+  ];
+
+  const reps = ["×3", "×5", "×7"];
+
+  function buildTable(cycle, idx) {
+    const [b1, b2, b3] = cycle.blocks;
+    let rows = "";
+    let prevSection = null;
+    let prevSub = null;
+
+    for (const ex of exercises) {
+      if (ex.section && ex.section !== prevSection) {
+        rows += `<tr class="row-section"><td colspan="4">${ex.section}</td></tr>`;
+        prevSection = ex.section;
+        prevSub = null;
+      }
+      if (ex.sub && ex.sub !== prevSub) {
+        rows += `<tr class="row-sub"><td colspan="4">${ex.sub}</td></tr>`;
+        prevSub = ex.sub;
+      }
+      rows += `
+        <tr class="row-exercise">
+          <td>${ex.name}</td>
+          <td class="cell-input"><input type="text" placeholder="— kg" aria-label="${ex.name} blok ${b1}"></td>
+          <td class="cell-input"><input type="text" placeholder="— kg" aria-label="${ex.name} blok ${b2}"></td>
+          <td class="cell-input"><input type="text" placeholder="— kg" aria-label="${ex.name} blok ${b3}"></td>
+        </tr>`;
+    }
+
+    const divider = idx > 0 ? '<div class="divider"></div>' : '';
+    return `
+      ${divider}
+      <div class="section-group">
+        <div class="cycle-header">
+          <span class="cycle-num">${cycle.label}</span>
+          <span class="cycle-line"></span>
+        </div>
+        <table>
+          <thead>
+            <tr>
+              <th>Ćwiczenie</th>
+              <th>Blok ${b1} (${reps[0]})</th>
+              <th>Blok ${b2} (${reps[1]})</th>
+              <th>Blok ${b3} (${reps[2]})</th>
+            </tr>
+          </thead>
+          <tbody>${rows}</tbody>
+        </table>
+      </div>`;
+  }
+
+  document.getElementById("tables").innerHTML = cycles.map(buildTable).join('');
+
+  // Save & restore from localStorage
+  const STORAGE_KEY = "trening_na_moc_v1";
+
+  function saveAll() {
+    const data = {};
+    document.querySelectorAll("input[data-key]").forEach(input => {
+      if (input.value) data[input.dataset.key] = input.value;
+    });
+    localStorage.setItem(STORAGE_KEY, JSON.stringify(data));
+  }
+
+  function loadAll() {
+    const raw = localStorage.getItem(STORAGE_KEY);
+    if (!raw) return;
+    const data = JSON.parse(raw);
+    document.querySelectorAll("input[data-key]").forEach(input => {
+      if (data[input.dataset.key]) input.value = data[input.dataset.key];
+    });
+  }
+
+  // Assign unique keys to every input
+  document.querySelectorAll(".cell-input input").forEach((input, i) => {
+    input.dataset.key = "field_" + i;
+    input.addEventListener("input", saveAll);
+  });
+
+  loadAll();
+</script>
+</body>
+</html>
